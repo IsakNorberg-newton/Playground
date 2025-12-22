@@ -31,7 +31,7 @@ public static class MusicGroupExtensions
     static string fname(string name)
     {
         var documentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        documentPath = Path.Combine(documentPath, "CodeSessions", "Linq");
+        documentPath = Path.Combine(documentPath, "AdvancedProgramming", "Linq");
         if (!Directory.Exists(documentPath)) Directory.CreateDirectory(documentPath);
         return Path.Combine(documentPath, name);
     }
