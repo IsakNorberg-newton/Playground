@@ -56,10 +56,12 @@ public static class Generics
         var intBox = new Box<int>(42);
         var stringBox = new Box<string>("Hello Generics");
         var dateBox = new Box<DateTime>(DateTime.Now);
+        var tuppleBox = new Box<(int, string)>((1, "One"));
 
         Console.WriteLine($"   {intBox}");
         Console.WriteLine($"   {stringBox}");
         Console.WriteLine($"   {dateBox}");
+        Console.WriteLine($"   {tuppleBox}");
 
         // Multiple type parameters
         var pair1 = new Pair<string, int>("Age", 25);
@@ -92,10 +94,12 @@ public static class Generics
             ["three"] = 3
         };
         var set = new HashSet<string> { "apple", "banana", "cherry", "apple" }; // duplicate ignored
+        var uniqueList = new List<string>(set); // Using HashSet to ensure uniqueness
 
         Console.WriteLine($"   List<int>: {string.Join(", ", list)}");
         Console.WriteLine($"   Dictionary<string, int>: {string.Join(", ", dict.Select(kv => $"{kv.Key}={kv.Value}"))}");
         Console.WriteLine($"   HashSet<string>: {string.Join(", ", set)}");
+        Console.WriteLine($"   Unique List<string>: {string.Join(", ", uniqueList)}");
         Console.WriteLine();
 
         Console.WriteLine("\n=== End of Generics Examples ===\n");

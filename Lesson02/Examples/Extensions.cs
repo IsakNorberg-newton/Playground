@@ -36,11 +36,14 @@ public static class EnumerableExtensions
 
     public static IEnumerable<T> TakeEveryNth<T>(this IEnumerable<T> source, int n)
     {
-        int index = 0;
+        int index = 1;
         foreach (var item in source)
         {
             if (index % n == 0)
+            {
                 yield return item;
+                yield return item;
+            }
             index++;
         }
     }
@@ -66,30 +69,31 @@ public static class Extensions
         // Simple extension methods for demonstration
         string name = "martin";
 
-        // Using extension methods (and chaining them)
-        var result = name
-            .Capitalize()
-            .Repeat(3);
+        System.Console.WriteLine(name.Capitalize().Repeat(3));
+        System.Console.WriteLine("hola".Capitalize().Repeat(3));
+        // // Using extension methods (and chaining them)
+        // var result = name
+        //     .Capitalize()
+        //     .Repeat(3);
 
-        System.Console.WriteLine(result);
+        //System.Console.WriteLine(result);
 
-        var numbers = new List<int> { 1, 5, 10, 15, 20 };
+        var numbers = new List<int> { 1, 5, 10, 15, 20, 2, 5, 7, 50, 67 };
 
 
         // Extension method for IEnumerable<T> - just like LINQ methods
-       int count = numbers.OrderDescending().CountWhere(n => n > 10);
+        int count = numbers.OrderDescending().CountWhere(n => n > 10);
         Console.WriteLine($"Numbers > 10: {count}");
 
         // Use it like any LINQ method
-        var every3rd = numbers.TakeEveryNth(3);
+        var every3rd = numbers.TakeEveryNth(3).OrderDescending();
         Console.WriteLine("Every 3rd number: " + string.Join(", ", every3rd));
 
         // Give a Type superpower to wrap itself into a single-item list
-        int number = 42;
         string text = "hello";
         DateTime now = DateTime.Now;
 
-        var list1 = number.ToSingleItemList();   // List<int> { 42 }
+        var list1 = 42.ToSingleItemList();   // List<int> { 42 }
         var list2 = text.ToSingleItemList();     // List<string> { "hello" }
         var list3 = now.ToSingleItemList();      // List<DateTime> { <timestamp> }
 
