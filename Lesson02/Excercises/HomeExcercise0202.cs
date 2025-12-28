@@ -124,7 +124,7 @@ public static class Excericee0201
         // Q8: For each genre, find the music group with the most albums and show album count
         // Use: GroupBy, Select, OrderByDescending, FirstOrDefault
         // Expected: Group by genre, for each genre find group with max album count
-        System.Console.WriteLine("\nQ8: Most prolific group per genre:");
+        System.Console.WriteLine("\nQ8 (Alternative with extra safety): Most prolific group per genre: ");
         var mostProlificByGenreAlt = musicgroups.GroupBy(g => g.Genre)
                                                 .Select(grp => grp.OrderByDescending(g => g.Albums.Count).FirstOrDefault());
         foreach (var g in mostProlificByGenreAlt) Console.WriteLine($"- {g.Genre}: {g.Name} ({g.Albums.Count} albums)");
