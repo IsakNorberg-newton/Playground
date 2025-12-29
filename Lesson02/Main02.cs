@@ -37,6 +37,6 @@ public static class Main02
         LinqOverview.RunExamples();
 
         //Excercise 02.01
-        Excericee0201.Entry();
+        HomeExcericee02Answers.Entry();
     }
 }

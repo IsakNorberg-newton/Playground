@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Models.Friends;
 using Models.Music;
 using PlayGround.Extensions;
@@ -6,7 +7,7 @@ using Seido.Utilities.SeedGenerator;
 
 namespace Playground.Lesson03;
 
-public static class HomeExercise03
+public static class HomeExercise03Answers
 {
     public static void Entry(string[] args = null)
     {      
@@ -46,6 +47,8 @@ public static class HomeExercise03
         System.Console.WriteLine("\n--- Exercise 1: Map Extension ---");
         System.Console.WriteLine("Transform friend data using Map extension");
 
+        var n = friendHasMany.Map(f => $"{f.FirstName} {f.LastName}");
+        System.Console.WriteLine(n);
         }
     #endregion
 
@@ -62,6 +65,16 @@ public static class HomeExercise03
     {
         System.Console.WriteLine("\n--- Exercise 3: Fork Extension ---");
         System.Console.WriteLine("Perform parallel operations using Fork extension");
+    
+        var s = friendHasMany.Fork(
+            f => f.Pets.Select(p => p.Name).DistinctBy(p => p),
+            f => f.Quotes.Select(q => q.Author).DistinctBy(p => p),
+            (pnames, anames) => $"{friendHasMany.FirstName} has these pets {string.Join(",",pnames)} and likes {string.Join(",",anames)}"
+        );
+
+        System.Console.WriteLine(s);
+
+
     }
     #endregion
 
@@ -78,6 +91,18 @@ public static class HomeExercise03
     {
         System.Console.WriteLine("\n--- Exercise 5: Compose Extension ---");
         System.Console.WriteLine("Chain functions using Compose extension");
+
+        Func<Friend, string> getFullName = e => $"{e.FirstName} {e.LastName}";
+        Func<string, string> formatName = name => name.ToUpper();
+        var nameFormatter = getFullName.Compose(formatName);
+
+        Func<string, string>  titledName = name => $"Mr/Ms: {name}";
+        var fullNameWithTitle = nameFormatter.Compose(titledName);
+
+        Func<string, string>  greetName = name => $"Hello, {name}!";
+        var greetFullName = fullNameWithTitle.Compose(greetName);
+
+        System.Console.WriteLine(greetFullName(friendHasMany));
     }
     #endregion
 

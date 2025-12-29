@@ -30,8 +30,8 @@ public static class ComposeExtension
         // Example 1: Compose employee name extraction with formatting
         Func<Employee, string> getFullName = e => $"{e.FirstName} {e.LastName}";
         Func<string, string> formatName = name => name.ToUpper();
-        
         var nameFormatter = getFullName.Compose(formatName);
+
         var formattedName = nameFormatter(employee);
         Console.WriteLine($"Formatted Name: {formattedName}");
         
@@ -45,8 +45,8 @@ public static class ComposeExtension
             >= 2 => "Regular Employee",
             _ => "New Employee"
         };
-        
         var experienceClassifier = calculateTenure.Compose(categorizeExperience);
+
         var experienceLevel = experienceClassifier(employee);
         Console.WriteLine($"Experience Level: {experienceLevel} ({calculateTenure(employee)} years)");
         

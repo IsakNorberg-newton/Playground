@@ -37,13 +37,13 @@ public static class MapExtension
         Console.WriteLine($"Years of Service: {yearsOfService}");
         
         // Example 3: Map to anonymous type with computed properties
-        var employeeSummary = employee.Map(e => new 
-        {
-            Name = $"{e.FirstName} {e.LastName}",
-            Role = e.Role.ToString(),
-            CardCount = e.CreditCards.Count,
-            Tenure = $"{DateTime.Now.Year - e.HireDate.Year} years"
-        });
+        var employeeSummary = employee.Map(e =>  
+        (
+            Name: $"{e.FirstName} {e.LastName}",
+            Role: e.Role.ToString(),
+            CardCount: e.CreditCards.Count,
+            Tenure: $"{DateTime.Now.Year - e.HireDate.Year} years"
+        ));
         Console.WriteLine($"Summary: {employeeSummary.Name}, {employeeSummary.Role}, {employeeSummary.CardCount} cards, {employeeSummary.Tenure}");
         
         // Example 4: Sequential transformations using Map with params
