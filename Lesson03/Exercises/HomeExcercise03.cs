@@ -13,7 +13,7 @@ public static class HomeExercise03
         System.Console.WriteLine("=== Lesson 03 Home Exercises ===\n");
         System.Console.WriteLine("Functional Programming Extensions with Friend Models\n");
         
-        var (_, friendNoAddress, friendNoPets, friendNoQuotes, friendHasMany) = HomeExercise03Init.GetData(false);
+        var (_, friendNoAddress, friendNoPets, friendNoQuotes, friendHasMany) = HomeExercise03Init.GetData(true);
         System.Console.WriteLine($"Loaded Friends: \n1. {friendNoAddress}\n2. {friendNoPets}\n3. {friendNoQuotes}\n4. {friendHasMany}\n");
         
         // Exercise 1: Map Extension - Transform friend data
